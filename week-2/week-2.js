@@ -7,12 +7,15 @@ function calculate(min, max, step) {
     count = parseInt(((max - min) / step) + 1);
     testMax = min + (count - 1) * step;
     if (testMax != max) {
-        console.log((min + testMax) / 2 * count | 0);
+        res = ((min + testMax) / 2 * count | 0);
+        console.log(res);
     }
 
     else {
-        console.log((min + max) / 2 * count);
+        res = (min + max) / 2 * count;
+        console.log(res);
     }
+    return res;
 
 }
 calculate(1, 3, 1); // 你的程式要能夠計算 1+2+3,最後印出 6
@@ -39,7 +42,9 @@ function avg(data) {
             num++;
         }
     }
-    console.log(sum / num)
+    res = sum / num;
+    console.log(res);
+    return res;
 }
 
 avg({
@@ -100,6 +105,7 @@ function maxProduct(nums) {
         }
     }
     console.log(mulMax);
+    return mulMax;
 }
 maxProduct([5, 20, 2, 6]) // 得到 120
 maxProduct([10, -20, 0, 3]) // 得到 30
@@ -108,6 +114,7 @@ maxProduct([-1, 2]) // 得到 -2
 maxProduct([-1, 0, 2]) // 得到 0 或 -0
 maxProduct([5, -1, -2, 0]) // 得到 2
 maxProduct([-5, -2]) // 得到 10
+
 
 // =========================================要求五:=========================================
 // Given an array of integers, show indices of the two numbers such that they add up to a
@@ -120,9 +127,9 @@ function twoSum(nums, target) {
     for (i = 0; i < nums.length; i++) {
         for (j = 0; j < nums.length; j++) {
             if (nums[i] + nums[j] == target && i != j) {
-                result.push(i, j)
+                result.push(i, j);
                 // result.push(j)
-                return result
+                return result;
             }
         }
     }
@@ -130,3 +137,38 @@ function twoSum(nums, target) {
 
 let result = twoSum([2, 11, 7, 15], 9);
 console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
+
+
+// ================================要求六 ( Optional ):================================
+// 給定只會包含 0 或 1 兩種數字的列表 (Python) 或陣列 (JavaScript)，計算連續出現 0 的最大長度。
+// ===================================================================================
+
+function maxZeros(nums) {
+    var contiZero = 0;
+    var contiZeroList = [];
+
+    //把 contiZero(0累積數量) 裝進 陣列
+    for (i = 0; i < (nums.length); i++) {
+        if (nums[i] == 0) {
+            contiZero++;
+        }
+        else {
+            contiZero = 0;
+        }
+        contiZeroList.push(contiZero);
+    }
+
+    // 求陣列最大值
+    var maxContiZero = 0;
+    for (j = 0; j < (contiZeroList.length); j++) {
+        if (contiZeroList[j] > maxContiZero) {
+            maxContiZero = contiZeroList[j];
+        }
+    }
+    console.log(maxContiZero);
+    return maxContiZero;
+}
+maxZeros([0, 1, 0, 0]); // 得到 2
+maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); // 得到 4
+maxZeros([1, 1, 1, 1, 1]); // 得到 0
+maxZeros([0, 0, 0, 1, 1]) // 得到 3
