@@ -4,8 +4,9 @@
 // ============================================================
 
 function calculate(min, max, step) {
-    count = parseInt(((max - min) / step) + 1);
-    testMax = min + (count - 1) * step;
+    let count = parseInt(((max - min) / step) + 1);
+    let testMax = min + (count - 1) * step;
+    let res = 0;
     if (testMax != max) {
         res = ((min + testMax) / 2 * count | 0);
         console.log(res);
@@ -33,16 +34,16 @@ calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1,最後印出 0
 function avg(data) {
     let sum = 0;
     let num = 0;
-    var dataKey = Object.keys(data); //['employees']
-    var content = data[dataKey]; // 'employees'的值（陣列內容）
-    dataKeyLen = content.length; // 4
-    for (i = 0; i < dataKeyLen; i++) {
+    let dataKey = Object.keys(data); //['employees']
+    let content = data[dataKey]; // 'employees'的值（陣列內容）
+    let dataKeyLen = content.length; // 4
+    for (let i = 0; i < dataKeyLen; i++) {
         if (content[i].manager == false) {
             sum += content[i].salary;
             num++;
         }
     }
-    res = sum / num;
+    let res = sum / num;
     console.log(res);
     return res;
 }
@@ -96,9 +97,9 @@ func(-3)(2, 9); // 你補完的函式能印出 -3+(2*9) 的結果 15
 // ==============================================================================
 
 function maxProduct(nums) {
-    mulMax = nums[0] * nums[1];
-    for (i = 0; i < nums.length; i++) {
-        for (j = 0; j < nums.length; j++) {
+    let mulMax = nums[0] * nums[1];
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
             if (nums[i] * nums[j] > mulMax && i != j) {
                 mulMax = nums[i] * nums[j];
             }
@@ -123,13 +124,13 @@ maxProduct([-5, -2]) // 得到 10
 // ========================================================================================
 
 function twoSum(nums, target) {
-    var result = [];
-    for (i = 0; i < nums.length; i++) {
-        for (j = 0; j < nums.length; j++) {
+    let res = [];
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
             if (nums[i] + nums[j] == target && i != j) {
-                result.push(i, j);
-                // result.push(j)
-                return result;
+                res.push(i, j);
+                // res.push(j)
+                return res;
             }
         }
     }
@@ -144,11 +145,11 @@ console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
 // ===================================================================================
 
 function maxZeros(nums) {
-    var contiZero = 0;
-    var contiZeroList = [];
+    let contiZero = 0;
+    let contiZeroList = [];
 
     //把 contiZero(0累積數量) 裝進 陣列
-    for (i = 0; i < (nums.length); i++) {
+    for (let i = 0; i < (nums.length); i++) {
         if (nums[i] == 0) {
             contiZero++;
         }
@@ -159,8 +160,8 @@ function maxZeros(nums) {
     }
 
     // 求陣列最大值
-    var maxContiZero = 0;
-    for (j = 0; j < (contiZeroList.length); j++) {
+    let maxContiZero = 0;
+    for (let j = 0; j < (contiZeroList.length); j++) {
         if (contiZeroList[j] > maxContiZero) {
             maxContiZero = contiZeroList[j];
         }
