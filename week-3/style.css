@@ -1,0 +1,248 @@
+* {
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* ==================================================
+                    navbar 
+===================================================*/
+
+.navbar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.menu {
+    display: flex;
+    /*移除項目符號*/
+    list-style-type: none;
+    /* 去掉瀏覽器原有margin和padding */
+    margin: 0;
+    padding: 0;
+
+    /* 固定選單在最上方 */
+    /* position: fixed;
+        top: 0;
+        width: 100%; */
+}
+
+.menu a {
+    /* a為行內元素，超連結只會在字體範圍內，若想點擊整個格子都有超連結須將超連結改為block*/
+    display: block;
+    margin-right: 15px;
+    /* 指定超連結字體顏色 */
+    color: #000000;
+    /*去掉超連結底線*/
+    text-decoration: none;
+}
+
+.navbar-button {
+    display: none;
+}
+
+/* ==================================================
+                    Welcome 
+===================================================*/
+
+.welcome {
+    width: 100%;
+    height: 300px;
+    background-color: rgb(242, 205, 205);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome p {
+    font-size: 40px;
+}
+
+/* ==================================================
+                    主內容 
+===================================================*/
+
+.content {
+    width: 1200px;
+    margin: 20px auto;
+}
+
+.row1,
+.row2,
+.row3 {
+    width: 100%;
+    padding: 0px;
+    border: 0px;
+}
+
+.row1 .picture {
+    background-color: rgb(221, 181, 181);
+    /* display: inline-block; */
+    float: left;
+    width: 49%;
+    height: 50px;
+    margin: 1%;
+    overflow: hidden;
+}
+
+.row1 .picture img {
+    vertical-align: middle;
+}
+
+.row1 .picture p {
+    margin: 0px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.row2 .picture,
+.row3 .picture {
+    background-color: rgb(221, 181, 181);
+    box-sizing: border-box;
+    float: left;
+    /* display: inline-block; */
+    width: 23.5%;
+    height: auto;
+    margin: 1%;
+    /* word-wrap: break-word; */
+
+}
+
+.row2 .picture p,
+.row3 .picture p {
+    margin: 0px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.row2 .picture p {
+    height: 35px;
+}
+
+.row3 .picture p {
+    height: 60px;
+}
+
+img.small {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 8/5;
+}
+
+img.medium {
+    width: 100%;
+    /* *** */
+    height: 80%;
+    object-fit: cover;
+    aspect-ratio: 8/5;
+}
+
+.row1 .head,
+.row2 .head,
+.row3 .head {
+    margin-left: 0px;
+}
+
+.row1 .tail,
+.row2 .tail,
+.row3 .tail {
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .content {
+        width: 90%;
+    }
+
+    .row2 .second,
+    .row3 .second {
+        margin-right: 0px;
+    }
+
+    .row2 .third,
+    .row3 .third {
+        margin-left: 0px;
+    }
+
+    .row2 .picture,
+    .row3 .picture {
+        width: 49%;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .navbar-button {
+        display: block;
+        width: 49.5px;
+        height: 30px;
+        text-align: center;
+        padding: 0px;
+    }
+
+    .navbar-button img {
+        height: 100%;
+    }
+
+    .navbar-list {
+        position: fixed;
+        width: 200px;
+        /* 若不設置高度會自行按照內容作為高度 */
+        /* vh為viewport(視窗) height */
+        height: 100vh;
+        left: -200px;
+        top: 0px;
+        background-color: rgb(236, 153, 153);
+        /* 選單點擊後出現有漸進效果 */
+        /* transition: all .3s ease-out; */
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .menu a {
+        color: white;
+        padding: 15px;
+    }
+
+    .logo {
+        align-items: center;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    .row1,
+    .row2,
+    .row3 {
+        display: block;
+    }
+
+    .row1 .picture,
+    .row2 .picture,
+    .row3 .picture {
+        width: 100%;
+        height: auto;
+        margin: 8px 0px 8px 0px;
+    }
+}

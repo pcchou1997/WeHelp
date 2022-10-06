@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周品甄_week3作業</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <a class="logo" href="#">My Website</a>
+        <nav class="navbar-list">
+            <ul class="menu">
+                <li><a href="#">Item1</a></li>
+                <li><a href="#">Item2</a></li>
+                <li><a href="#">Item3</a></li>
+                <li><a href="#">Item4</a></li>
+            </ul>
+        </nav>
+        <button class="navbar-button">
+            <img src="./134216_menu_lines_hamburger_icon.svg" alt="hamburger">
+        </button>
+    </nav>
+    <!-- 導覽列end -->
+
+    <!-- welcome -->
+    <div class="welcome">
+        <p>Welcome to MyHome</p>
+    </div>
+    <!-- welcome end -->
+
+    <!-- 主內容 -->
+    <div class="content">
+        <div class="row1">
+            <div class="picture head" id="div0">
+                <img src="https://picsum.photos/id/106/800/500" class="small" id="picture_0">
+                <p id="p0">Red Flowers</p>
+            </div>
+            <div class="picture tail" id="div1">
+                <img src="https://picsum.photos/id/106/800/500" class="small" id="picture_1">
+                <p id="p1">Red Flowers</p>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="picture head" id="div2">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_2">
+                <p id="p2">Red Flowers</p>
+            </div>
+            <div class="picture second" id="div3">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_3">
+                <p id="p3">Red Flowers</p>
+            </div>
+            <div class="picture third" id="div4">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_4">
+                <p id="p4">Red Flowers</p>
+            </div>
+            <div class="picture tail" id="div5">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_5">
+                <p id="p5">Red Flowers</p>
+            </div>
+        </div>
+        <div class="row3">
+            <div class="picture head" id="div6">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_6">
+                <p id="p6">Red Flowers</p>
+            </div>
+            <div class="picture second" id="div7">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_7">
+                <p id="p7">Red Flowers</p>
+            </div>
+            <div class="picture third" id="div8">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_8">
+                <p id="p8">Red Flowers</p>
+            </div>
+            <div class="picture tail" id="div9">
+                <img src="https://picsum.photos/id/106/800/500" class="medium" id="picture_9">
+                <p id="p9">Red Flowers</p>
+            </div>
+        </div>
+    </div>
+    <!-- 主內容end -->
+    <script>
+        // 利用fetch 進行連線並取得資料
+        fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
+            .then(function (response) { return response.json(); }).then(function (data) {
+                let outKey = Object.keys(data); //['result']
+                let midData = data[outKey]; // 'result'的值（陣列內容）{"limet":1000, ...}
+                for (let i = 0; i < Object.keys(midData).length; i++) {
+                    let innerData = midData[Object.keys(midData)[i]]
+                    if (typeof innerData === 'object') { // 找到值為物件的'results'
+                        // console.log(innerData);
+                        for (let j = 0; j < 10; j++) {
+                            // 找圖片網址
+                            newImg = 'http' + innerData[j]['file'].split('http', 3)[1];
+                            console.log(newImg)
+                            //找景點名稱
+                            newSite = innerData[j]['stitle'];
+                            // 更改<img>.src
+                            pictureId = "picture_" + j.toString();
+                            console.log("pictureId", pictureId);
+                            document.getElementById(pictureId).src = newImg;
+                            // 刪除&新增<p>
+                            let newPTag = document.createElement('p');
+                            divId = "div" + j.toString();
+                            console.log("divId", divId);
+                            let currentDiv = document.getElementById(divId)
+                            pId = "p" + j.toString();
+                            console.log("pId", pId);
+                            let removeNode = document.getElementById(pId);
+                            let throwawayNode = currentDiv.removeChild(removeNode);
+                            currentDiv.appendChild(newPTag);
+                            let newText = document.createTextNode(newSite);
+                            newPTag.appendChild(newText);
+                        }
+
+                    };
+                }
+            });
+    </script>
+</body>
+
+
+</html>
