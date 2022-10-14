@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html style="font-family: Microsoft JhengHei;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登入首頁</title>
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <p>歡迎光臨，請輸入帳號密碼</p>
+    </div>
+    <div class="headline">
+        <h2>登入系統</h2>
+    </div>
+    <!-- 登入介面 -->
+    <div class="form">
+        <form action="/signin" method="POST">
+            帳號 <input type="text" name="acc">
+            <br>
+            密碼 <input type="text" name="pw">
+            <br>
+            <button>登入</button>
+        </form>
+    </div>
+    <hr>
+    <!-- 計算介面 -->
+    <div class="headline">
+        <h2>計算正整數的平方</h2>
+    </div>
+    <div class="form">
+        <form action="/square">
+            正整數 <input type="text" name="num">
+            <br>
+            <button>計算</button>
+        </form>
+    </div>
+</body>
+
+</html>
