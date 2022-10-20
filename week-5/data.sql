@@ -39,7 +39,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (1,'test2','test','test',100,'2022-10-20 17:05:21'),(2,'二郎','bro2','222',200,'2022-10-20 17:05:28'),(3,'三郎','bro3','333',300,'2022-10-20 17:05:34'),(4,'四郎','bro4','444',400,'2022-10-20 17:05:39'),(5,'五郎','bro5','555',500,'2022-10-20 17:05:47');
+INSERT INTO `member` VALUES (1,'test2','test','test',100,'2022-10-20 23:06:17'),(2,'二郎','bro2','222',200,'2022-10-20 23:06:26'),(3,'三郎','bro3','333',300,'2022-10-20 23:06:34'),(4,'四郎','bro4','444',400,'2022-10-20 23:06:42'),(5,'五郎','bro5','555',500,'2022-10-20 23:06:49');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,3,'好棒',1,'2022-10-20 18:12:02'),(2,5,'加油',1,'2022-10-20 18:12:07'),(3,1,'好吃',1,'2022-10-20 18:12:13'),(4,4,'討厭',1,'2022-10-20 18:12:17'),(5,2,'不好',1,'2022-10-20 18:12:36'),(6,1,'不好',3,'2022-10-20 20:01:29');
+INSERT INTO `message` VALUES (1,3,'好棒',1,'2022-10-20 23:09:31'),(2,5,'加油',1,'2022-10-20 23:09:38'),(3,1,'好吃',1,'2022-10-20 23:09:45'),(4,4,'討厭',1,'2022-10-20 23:09:51'),(5,2,'不好',1,'2022-10-20 23:09:59'),(6,1,'good',3,'2022-10-20 23:10:14');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -81,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-20 20:51:56
+-- Dump completed on 2022-10-20 23:13:08
