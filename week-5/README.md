@@ -4,8 +4,8 @@ week-5
 要求二
 -----
 
-// 1. 建立一個新的資料庫，取名字為 website。
-// 2. 在資料庫中，建立會員資料表，取名字為 member。資料表必須包含以下欄位設定:
+// (1). 建立一個新的資料庫，取名字為 website。 (2). 在資料庫中，建立會員資料表，取名字為 member。資料表必須包含以下欄位設定:
+
 create table member(
 	id bigint primary key auto_increment,
 	name varchar(255) not null,
