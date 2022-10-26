@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html style="font-family: Microsoft JhengHei;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登入成功頁面</title>
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <p>歡迎光臨，這是會員頁</p>
+    </div>
+    <div class="center">
+        <p>{{member_name}}，歡迎登入系統</p>
+    </div>
+
+    <div class="center">
+        <a href="/signout">登出系統</a>
+    </div>
+    <hr>
+    <div class="center">
+        <h2>快來留言吧</h2>
+    </div>
+    <div class="form">
+        <form action="/message" method="POST">
+            內容 <input type="text" name="content">
+            <br>
+            <button>送出</button>
+        </form>
+    </div>
+    <div>
+        {% for each in member_message %}
+        <p class="center">{{each[0]+"："+each[1]}}</p>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
