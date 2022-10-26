@@ -57,7 +57,6 @@ def signin():
     cursor.execute("SELECT id,name,username,password FROM member WHERE username=%s and password=%s;", [
                    account, password])
     signin_cmp = cursor.fetchall()  # 得到所有返回資料，fetchall或fetchone
-    print(signin_cmp)
     # 若資料庫有此帳密，導至會員頁面
     if signin_cmp == []:
         return redirect("/error?message=帳號或密碼輸入錯誤")
