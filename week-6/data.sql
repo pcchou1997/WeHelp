@@ -55,7 +55,7 @@ CREATE TABLE `message` (
   `message_name` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,'dad','haha'),(2,'dad','goooood'),(3,'dad','第三個'),(4,'dad','第四個'),(5,'sis','爸爸我沒錢了'),(6,'bro','爸爸我要買球鞋'),(7,'dad','我登出了88'),(8,'jason','hi');
+INSERT INTO `message` VALUES (1,'dad','haha'),(2,'dad','goooood'),(3,'dad','第三個'),(4,'dad','第四個'),(5,'sis','爸爸我沒錢了'),(6,'bro','爸爸我要買球鞋'),(7,'dad','我登出了88'),(8,'jason','hi'),(9,'dad','gg'),(10,'dad','gg'),(11,'dad','hungry'),(12,'jason','what');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -77,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-27  0:05:32
+-- Dump completed on 2022-10-28 15:17:35

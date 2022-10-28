@@ -40,7 +40,7 @@ def signup():
         else:
             cursor.execute("INSERT INTO member(name,username,password)values(%s,%s,%s);", [
                 name, username, password])
-            conn.commit()  # 如果是insert、update、delete語句，需要加上這句
+            conn.commit()  # 如果是insert、update、delete語句，需要加上這句，執行到這句才是真正改變資料庫，之前只是暫存在內存
             cursor.execute("select *from member;")
             memberList = cursor.fetchall()
             return redirect("/")
@@ -71,17 +71,28 @@ def signin():
 @app.route("/member")
 def member():
     name = session["name"]
-    try:
-        comment = session["message"]
-        if session["loginState"] == name:
-            return render_template("member.html", member_name=name, member_message=comment)
-        else:
-            return redirect("/")
-    except KeyError:
-        if session["loginState"] == name:
-            return render_template("member.html", member_name=name, member_message="")
-        else:
-            return redirect("/")
+    # 確認有登入資訊且為本人
+    if session["loginState"] == name:
+        try:
+            # 檢查session中有無content
+            content = session["content"]
+            # 有content且不為空值
+            if content != "":
+                # 加入content到資料庫中
+                cursor.execute(
+                    "INSERT INTO message(message_name,message)values(%s,%s);", [name, content])
+                conn.commit()
+                # 將content改為空值
+                session["content"] = ""
+        # 沒有content，只取資料庫現有留言
+        except KeyError:
+            pass
+        cursor.execute("SELECT message_name,message FROM message")
+        datas = cursor.fetchall()
+        datas.reverse()
+        return render_template("member.html", member_name=name, member_message=datas)
+    else:
+        return redirect("/")
 
 
 @app.route("/error")
@@ -100,13 +111,7 @@ def signout():
 def message():
     name = session['loginState']
     content = request.form["content"]
-    cursor.execute(
-        "INSERT INTO message(message_name,message)values(%s,%s);", [name, content])
-    conn.commit()
-    cursor.execute("SELECT message_name,message FROM message")
-    datas = cursor.fetchall()
-    datas.reverse()
-    session['message'] = datas
+    session["content"] = content
     return redirect("/member")
 
 
