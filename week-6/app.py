@@ -73,20 +73,6 @@ def member():
     name = session["name"]
     # 確認有登入資訊且為本人
     if session["loginState"] == name:
-        try:
-            # 檢查session中有無content
-            content = session["content"]
-            # 有content且不為空值
-            if content != "":
-                # 加入content到資料庫中
-                cursor.execute(
-                    "INSERT INTO message(message_name,message)values(%s,%s);", [name, content])
-                conn.commit()
-                # 將content改為空值
-                session["content"] = ""
-        # 沒有content，只取資料庫現有留言
-        except KeyError:
-            pass
         cursor.execute("SELECT message_name,message FROM message")
         datas = cursor.fetchall()
         datas.reverse()
@@ -111,7 +97,9 @@ def signout():
 def message():
     name = session['loginState']
     content = request.form["content"]
-    session["content"] = content
+    cursor.execute(
+        "INSERT INTO message(message_name,message)values(%s,%s);", [name, content])
+    conn.commit()
     return redirect("/member")
 
 
