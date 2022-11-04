@@ -46,7 +46,7 @@
             let searchNameElement = document.getElementById("searchName");
             let searchName = searchNameElement.value;
 
-            fetch('/api/member?username=' + searchName).then(function (response) {
+            fetch('/api/member?searchUsername=' + searchName).then(function (response) {
                 return response.json();
             }).then(function (data) {
                 if (data["data"] == null) {

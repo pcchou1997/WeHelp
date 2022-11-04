@@ -34,7 +34,7 @@ def signup():
     name = request.values["register_name"]
     username = request.values["register_username"]
     password = request.values["register_password"]
-        
+
     cursor.execute("SELECT *FROM member WHERE username=%s;", [username])
     datas = cursor.fetchall()
     if datas == []:
@@ -66,8 +66,9 @@ def signin():
     # 若資料庫無此帳密，導致失敗頁面
     else:
         name = signin_cmp[0][1]
+        usrname = signin_cmp[0][2]
         session["loginState"] = name
-        # session["name"] = name
+        session["usrname"] = usrname
         return redirect("/member")
 
 
@@ -89,6 +90,7 @@ def error():
 @app.route("/signout", methods=["GET"])
 def signout():
     session["loginState"] = ""
+    session["usrname"] = ""
     return redirect("/")
 
 
@@ -105,15 +107,16 @@ def message():
 @app.route("/api/member", methods=["GET", "PATCH"])
 def api_member():
     name = session["loginState"]
+    usrname = session["usrname"]
     if request.method == "GET":
         outDict = {}
-        usrname = request.args.get("username", None)
+        searchName = request.args.get("searchUsername", None)
         cursor.execute(
-            "SELECT id,name,username FROM member WHERE username=%s;", [usrname])
-        usrnameList = cursor.fetchall()
+            "SELECT id,name,username FROM member WHERE username=%s;", [searchName])
+        searchNameList = cursor.fetchall()
         try:
-            if session["loginState"] != "" and usrnameList != []:
-                for each in usrnameList:
+            if session["loginState"] != "" and searchNameList != []:
+                for each in searchNameList:
                     inDict = {}
                     inDict['id'] = each[0]
                     inDict['name'] = each[1]
@@ -125,22 +128,22 @@ def api_member():
         except:
             outDict['data'] = None
         finally:
-            outDict = json.dumps(outDict)
+            outDict = jsonify(outDict)
             return outDict
     if request.method == "PATCH":
         newname = request.get_json()
         cursor.execute(
-            "SELECT id,name,username FROM member WHERE name=%s;", [name])
+            "SELECT id,name,username FROM member WHERE username=%s;", [usrname])
         nameList = cursor.fetchall()
         if session["loginState"] != "" and nameList != []:
             cursor.execute(
-                "UPDATE member SET name=%s WHERE name=%s", [newname["name"], name])
+                "UPDATE member SET name=%s WHERE username=%s", [newname["name"], usrname])
             conn.commit()
             changeRes = {"ok": True}
-            return json.dumps(changeRes)
+            return jsonify(changeRes)
         else:
             changeRes = {"error": True}
-            return json.dumps(changeRes)
+            return jsonify(changeRes)
 
 
 app.run(port=3000, debug=True)  # debug=True 代表存擋後自動重啟程式
