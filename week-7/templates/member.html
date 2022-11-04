@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html style="font-family: Microsoft JhengHei;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登入成功頁面</title>
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <p>歡迎光臨，這是會員頁</p>
+    </div>
+    <div class="center">
+        <p id="member_name">{{member_name}}，歡迎登入系統</p>
+    </div>
+
+    <div class="center">
+        <a href="/signout">登出系統</a>
+    </div>
+    <hr>
+    <div class="center">
+        <h2>查詢會員姓名</h2>
+    </div>
+    <div class="form">
+        <input type="text" name="username" id="searchName">
+        <button onclick="getName();">查詢</button>
+    </div>
+    <div class="center" id="search_result">
+
+    </div>
+    <hr>
+    <div class="center">
+        <h2>更新我的姓名</h2>
+    </div>
+    <div class="form">
+        <input type="text" name="newname" id="changeName">
+        <button onclick="changeName();">更改</button>
+    </div>
+    <div class="center" id="change_result">
+
+    </div>
+    <script>
+        // 查詢會員姓名
+        function getName() {
+            let searchNameElement = document.getElementById("searchName");
+            let searchName = searchNameElement.value;
+
+            fetch('/api/member?username=' + searchName).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                if (data["data"] == null) {
+                    document.getElementById("search_result").innerHTML = "Can't find the member";
+                }
+                else {
+                    document.getElementById("search_result").innerHTML = data["data"]["name"];
+                }
+            });
+        }
+        // 更改會員姓名
+        function changeName() {
+            let changeName = document.getElementById("changeName").value;
+            let newnameObj = new Object();
+            newnameObj.name = changeName;
+            fetch("/api/member", {
+                method: "PATCH",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify(newnameObj)
+            }).then(response => {
+                return response.json();
+            }).then(function (data) {
+                if (data.ok == true) {
+                    document.getElementById("change_result").innerHTML = "更新成功";
+                    document.getElementById("member_name").innerHTML = changeName + "，歡迎登入系統";
+                }
+                else {
+                    document.getElementById("change_result").innerHTML = "無法更新";
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
