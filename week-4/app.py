@@ -4,6 +4,7 @@ from flask import redirect
 from flask import render_template
 from flask import session
 
+
 app = Flask(__name__)
 app.secret_key = "any string but secret"
 
@@ -26,12 +27,15 @@ def error():
     msg = request.args.get("message", None)
     return render_template("error.html", message=msg)
 
+# 註冊表單接收
+
 
 @app.route("/signin", methods=["POST"])
 def signin():
     account = request.form["acc"]
     password = request.form["pw"]
     if account == "test" and password == "test":
+        # 紀錄登入狀態=True
         session["loginState"] = True
         return redirect("/member")
     elif account == "" or password == "":
@@ -39,19 +43,22 @@ def signin():
     else:
         return redirect("/error?message=帳號、或密碼輸入錯誤")
 
+# 登出
+
 
 @app.route("/signout", methods=["GET"])
 def signout():
+    # 登入狀態=False
     session["loginState"] = False
     return redirect("/")
 
 
-@app.route("/square")
-def preSquare():
-    num = request.args.get("num", None)
-    return redirect("/square/" + num)
+# @app.route("/square")
+# def preSquare():
+#     num = request.args.get("num", None)
+#     return redirect("/square/" + num)
 
-
+# 計算正整數
 @app.route("/square/<number>")
 def square(number):
     number = int(number)

@@ -31,11 +31,18 @@
     </div>
     <div class="form">
         <form action="/square">
-            正整數 <input type="text" name="num">
+            正整數 <input type="text" name="num" id="calnumber">
             <br>
-            <button>計算</button>
+            <button onclick="changeRoute()">計算</button>
         </form>
     </div>
+    <script>
+        function changeRoute() {
+            let element = document.getElementById("calnumber").value;
+            let url = "/square/" + element;
+            document.location.href = url;
+        }
+    </script>
 </body>
 
 </html>
